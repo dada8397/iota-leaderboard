@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
-import {isSignedIn} from './DataModel/AuthDataModel';
+import {isSignedIn, onSignOut} from './DataModel/AuthDataModel';
 import Dashboard from './Containers/Dashboard';
 import Login from './Containers/Login';
 import Sent from './Containers/Sent';
@@ -18,6 +18,7 @@ export default class App extends Component {
     }
 
     componentWillMount() {
+        onSignOut();
         isSignedIn()
             .then(res => this.setState({signedIn: res, checkedSignIn: true}))
             .catch(err => alert("An error occurred"));
